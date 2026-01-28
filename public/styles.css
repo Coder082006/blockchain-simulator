@@ -1,0 +1,312 @@
+:root {
+    --bg: #0e1117;
+    --panel: #151a23;
+    --panel-alt: #1c2330;
+    --text: #e8ecf2;
+    --muted: #9aa4b5;
+    --accent: #5ad2ff;
+    --accent-2: #7cf29a;
+    --border: #1f2633;
+    --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    --radius: 12px;
+    --gap: 16px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: radial-gradient(circle at 20% 20%, rgba(90, 210, 255, 0.08), transparent 35%),
+                radial-gradient(circle at 80% 0%, rgba(124, 242, 154, 0.08), transparent 30%),
+                var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 24px;
+    min-height: 100vh;
+}
+
+header {
+    max-width: 1100px;
+    margin: 0 auto var(--gap);
+}
+
+h1 {
+    margin: 0 0 8px;
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    margin: 0 0 12px;
+}
+
+p { margin: 0; }
+
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+}
+
+.header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    width: 100%;
+}
+
+input, button {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--panel-alt);
+    color: var(--text);
+    font-size: 14px;
+}
+
+input:focus {
+    outline: 2px solid var(--accent);
+    border-color: var(--accent);
+}
+
+button {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #0a0f18;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+button:hover { transform: translateY(-1px); }
+button:active { transform: translateY(0); }
+
+.button { width: fit-content; }
+
+.hint {
+    color: var(--muted);
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+#status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+#status-message { font-weight: 600; }
+#chain-validity { color: var(--accent-2); }
+
+.chain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+}
+
+.block {
+    background: var(--panel-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.block header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.block .hash {
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 12px;
+    color: var(--muted);
+    word-break: break-all;
+}
+
+.block .hash.hash-mismatch {
+    background: rgba(255, 133, 133, 0.15);
+    border-left: 3px solid #ff8585;
+    padding: 6px;
+    color: #ff8585;
+    margin: 4px 0;
+}
+
+.transactions {
+    margin-top: 8px;
+    padding-left: 12px;
+    border-left: 2px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.transaction {
+    background: rgba(90, 210, 255, 0.06);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 8px;
+    font-size: 13px;
+}
+
+footer {
+    max-width: 1100px;
+    margin: 20px auto 0;
+    color: var(--muted);
+    text-align: center;
+}
+
+.block.invalid {
+    border: 2px solid #ff8585;
+    box-shadow: 0 0 20px rgba(255, 133, 133, 0.3);
+}
+
+.block .tamper-btn {
+    margin-top: 8px;
+    padding: 6px 10px;
+    font-size: 12px;
+    background: linear-gradient(135deg, #ff8585, #ff5555);
+}
+
+.chain-link {
+    position: relative;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+}
+
+.chain-link::before {
+    content: '→';
+    font-size: 32px;
+    color: var(--accent);
+}
+
+.mining-progress {
+    margin-top: 8px;
+    padding: 8px;
+    background: rgba(90, 210, 255, 0.1);
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    border-bottom: 1px dotted var(--muted);
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: var(--panel-alt);
+    color: var(--text);
+    text-align: left;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tutorial-panel {
+    background: linear-gradient(135deg, rgba(90, 210, 255, 0.1), rgba(124, 242, 154, 0.05));
+    border: 2px solid var(--accent);
+}
+
+.tutorial-panel h2 {
+    color: var(--accent);
+}
+
+.demo-controls {
+    display: flex;
+    gap: 10px;
+}
+
+#tutorial-steps {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.step {
+    padding: 12px;
+    background: var(--panel-alt);
+    border-left: 3px solid var(--muted);
+    border-radius: 6px;
+    transition: all 200ms ease;
+}
+
+.step.active {
+    border-left: 3px solid var(--accent-2);
+    background: rgba(124, 242, 154, 0.1);
+    box-shadow: inset 0 0 10px rgba(124, 242, 154, 0.1);
+}
+
+.step strong {
+    color: var(--accent-2);
+}
+
+.flash {
+    animation: flash 1s ease-in-out 2;
+}
+
+@keyframes flash {
+    0% { box-shadow: 0 0 0 rgba(90, 210, 255, 0.8); }
+    50% { box-shadow: 0 0 20px rgba(90, 210, 255, 0.9); }
+    100% { box-shadow: 0 0 0 rgba(90, 210, 255, 0.8); }
+}
+
+.flow-highlight {
+    position: relative;
+    overflow: hidden;
+}
+
+.flow-highlight::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(90,210,255,0.12), rgba(124,242,154,0.12));
+    animation: flow 1.2s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes flow {
+    0% { transform: translateX(-100%); opacity: 0.6; }
+    50% { opacity: 0.9; }
+    100% { transform: translateX(100%); opacity: 0.6; }
+}

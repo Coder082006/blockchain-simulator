@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>🔗 Blockchain Simulator</h1>
+        <p>Learn how blockchain works: queue transactions, mine blocks with proof-of-work, and see immutability in action.</p>
+    </header>
+    <main>
+        <section id="status-bar" class="panel">
+            <div id="status-message">Ready.</div>
+            <div id="chain-validity"></div>
+        </section>
+
+        <section id="demo" class="panel tutorial-panel">
+            <div class="header-row">
+                <h2>🎬 Visual Simulator</h2>
+                <div class="demo-controls">
+                    <button id="visual-btn" class="button" onclick="window.location.href='/visualizer.html'">🎨 Open 3D Visualizer</button>
+                    <button id="demo-play" class="button">Play Demo</button>
+                </div>
+            </div>
+            <p class="hint">Click "Open 3D Visualizer" to see blocks with animation effects, data flow, and tampering in action - like Cisco Packet Tracer!</p>
+        </section>
+
+        <section id="tutorial" class="panel tutorial-panel">
+            <h2>📚 Learn Mode (Step-by-Step)</h2>
+            <div id="tutorial-content">
+                <p>Follow these steps to understand how blockchain works:</p>
+                <ol id="tutorial-steps">
+                    <li id="step-1" class="step active">
+                        <strong>Step 1:</strong> Queue a transaction
+                        <p class="hint">Enter a sender, recipient, and amount in the "Add Transaction" section below, then click "Queue Transaction".</p>
+                    </li>
+                    <li id="step-2" class="step">
+                        <strong>Step 2:</strong> Mine the block
+                        <p class="hint">Enter your miner address and click "Mine Block". Watch the nonce increment as it finds a valid hash.</p>
+                    </li>
+                    <li id="step-3" class="step">
+                        <strong>Step 3:</strong> See the block chain
+                        <p class="hint">A new block appears below with the transaction. Notice how blocks are linked via their hashes.</p>
+                    </li>
+                    <li id="step-4" class="step">
+                        <strong>Step 4:</strong> Tamper with a block
+                        <p class="hint">Scroll down and click "⚠️ Tamper with this block" on a mined block. Watch the chain break!</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="transaction-form" class="panel">
+            <h2>Add Transaction</h2>
+            <form id="add-transaction" class="form-grid">
+                <input type="text" id="sender" placeholder="Sender (e.g., alice)" required>
+                <input type="text" id="recipient" placeholder="Recipient (e.g., bob)" required>
+                <input type="number" id="amount" placeholder="Amount" min="0.0001" step="0.0001" required>
+                <button type="submit">Queue Transaction</button>
+            </form>
+            <p class="hint">Transactions are queued until mined into a block.</p>
+        </section>
+
+        <section id="mining" class="panel">
+            <h2>Mine Pending Transactions</h2>
+            <form id="mine-form" class="form-grid">
+                <input type="text" id="miner-address" placeholder="Miner address (reward target)" value="miner-1" required>
+                <button type="submit">Mine Block</button>
+            </form>
+            <p class="hint">Mining uses proof-of-work difficulty set on the server.</p>
+        </section>
+
+        <section id="balance" class="panel">
+            <h2>Check Balance</h2>
+            <form id="balance-form" class="form-grid">
+                <input type="text" id="balance-address" placeholder="Address (e.g., alice)" required>
+                <button type="submit">Get Balance</button>
+            </form>
+            <div id="balance-result" class="hint"></div>
+        </section>
+
+        <section id="visualization" class="panel">
+            <div class="header-row">
+                <h2>Blockchain Visualization</h2>
+                <button id="refresh-chain" class="button">Refresh Chain</button>
+            </div>
+            <div id="chain-container" class="chain-grid"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Blockchain Simulator</p>
+    </footer>
+    <script src="app.js" defer></script>
+</body>
+</html>
