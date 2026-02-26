@@ -1,4 +1,6 @@
-export function renderChain(chain: any[]): void {
+import { Block, Transaction } from '../types';
+
+export function renderChain(chain: Block[]): void {
     const chainContainer = document.getElementById('chain');
     if (chainContainer) {
         chainContainer.innerHTML = '';
@@ -8,7 +10,7 @@ export function renderChain(chain: any[]): void {
     }
 }
 
-export function renderBlock(block: any): void {
+export function renderBlock(block: Block): void {
     const blockContainer = document.createElement('div');
     blockContainer.className = 'block';
     
@@ -25,7 +27,7 @@ export function renderBlock(block: any): void {
     blockTimestamp.innerText = `Timestamp: ${new Date(block.timestamp).toLocaleString()}`;
     
     const transactionsList = document.createElement('ul');
-    block.transactions.forEach(transaction => {
+    block.transactions.forEach((transaction: Transaction) => {
         const transactionItem = document.createElement('li');
         transactionItem.innerText = `From: ${transaction.sender} To: ${transaction.recipient} Amount: ${transaction.amount}`;
         transactionsList.appendChild(transactionItem);
